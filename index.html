@@ -323,19 +323,21 @@
       //create a function to initialize the page
       function initial() {
         var searchList = JSON.parse(localStorage.getItem("weatherDashboard"));
-        var city, state;
-        var n = searchList.length;
-        for(var i=0; i<n; i++) {
-          city = searchList[i].cityName;
-          state = searchList[i].stateName;
-          var record = $("<p>").text(city + ", " + state);
-          record.attr("class","search-history");
-          $("#history-list").prepend(record);
-        };
-        city = searchList[0].cityName;
-        state = searchList[0].stateName;
-        currentWeather(city, state);
-        fiveDayForecast(city, state);
+        if(searchList) {
+          var city, state;
+          var n = searchList.length;
+          for(var i=0; i<n; i++) {
+            city = searchList[i].cityName;
+            state = searchList[i].stateName;
+            var record = $("<p>").text(city + ", " + state);
+            record.attr("class","search-history");
+            $("#history-list").prepend(record);
+          };
+          city = searchList[0].cityName;
+          state = searchList[0].stateName;
+          currentWeather(city, state);
+          fiveDayForecast(city, state);
+        }
       };
 
       //🍏 main program start
