@@ -212,9 +212,9 @@
         var currentTime = today.getTime()/1000;
         var url;
         if (currentTime > sunrise && currentTime < sunset) {
-          url = "http://openweathermap.org/img/wn/" + "04" + "d" + "@2x.png";
+          url = "https://openweathermap.org/img/wn/" + "04" + "d" + "@2x.png";
         } else {
-          url = "http://openweathermap.org/img/wn/" + "04" + "n" + "@2x.png";
+          url = "https://openweathermap.org/img/wn/" + "04" + "n" + "@2x.png";
         };
         $("#icon").attr("src", url);
         $("#description").text(description);
@@ -222,7 +222,7 @@
 
       //make a function to get UV index
       function getUVIndex(lat, lon) {
-        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" 
+        var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" 
                       + myKey + "&lat=" + lat + "&lon=" + lon;
         $.ajax({
           url: uvURL,
