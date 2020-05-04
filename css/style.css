@@ -1,0 +1,82 @@
+.header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.sxbtn {
+    background-color: white;
+}
+
+#search-result {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    padding: 5px;
+    width: 89%;
+    z-index: 1;
+}
+.filter-list {
+    padding: 10px;
+    margin: 0;
+}
+.filter-list:hover {
+    background-color: lightblue;
+}
+.search-history {
+    border: none;
+    padding: 10px;
+    margin: 0;
+}
+.search-history:hover {
+    background-color: lightskyblue;
+}
+.sx-row {
+    margin-bottom: 0;
+}
+.5-day-card {
+    width: 40%;
+}
+
+.sx-card {
+    padding: 20px;
+}
+.sx-5-day-card {
+    color: white;
+    background-color: grey;
+}
+.sx-col {
+    padding-right: 0;
+}
+.sx-col:last-child {
+    padding-right: 0px;
+}
+
+#icon {
+    width: 50px;
+    height: auto;
+}
+.icon-forecast {
+    width: 40px;
+    height: auto;
+}
+
+#list {
+    display: none;
+}
+
+#search-box:hover, #list {
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+    .sx-col {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="data/cityList.json"></script>
+
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row header">
+            <div class="col-sm">
+                <h1 class="center">Weather Dashboard</h1>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="row">
+                <div class="col-sm">
+                    <form>
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="search-box" placeholder="Search">
+                          <div class="input-group-btn" id="search-btn">
+                            <button class="btn btn-default sxbtn" type="submit">
+                              <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                            <div id="search-result">
+                              <p class="filter-list" id="item0">item0</p>
+                              <p class="filter-list" id="item1">item1</p>
+                              <p class="filter-list" id="item2">item2</p>
+                              <p class="filter-list" id="item3">item3</p>
+                              <p class="filter-list" id="item4">item4</p>  
+                            </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div id="history-list">
+                      <!-- add the history search here -->
+                    </div>
+                </div>
+            </div>
+
+          </div>
+          <!-- current weather section -->
+          <div class="col-sm-9" style="background-color:lightcyan">
+            <div class="row sx-row">
+                <div class="col-sm sx-col">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body sx-card">
+                          <h3 class="card-title">
+                            <span id="city-name">City Name</span>
+                            <span id="date">Date</span>
+                            <img id="icon">
+                            <!-- <span id="icon">icon</span> -->
+                            <span id="description"></span>
+                          </h3>
+                          <p class="card-text">Temperature: 
+                            <span id="temperature"></span>
+                            &#8457
+                          </p>
+                          <p class="card-text">Humidity: 
+                            <span id="humidity"></span>
+                            %
+                          </p>
+                          <p class="card-text">Wind Speed: 
+                            <span id="wind"></span>
+                            MPH
+                          </p>
+                          <p class="card-text">UV index: 
+                            <span id="uv"></span>
+                          </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 5 day forecast button -->
+            <div class="row sx-row">
+                <div class="col-sm">
+                    <h3>5-Day Forecast</h3>
+                </div>
+            </div>
+            <!-- 5 day forecast cards -->
+            <div class="row sx-row">
+                <div class="col-sm sx-col" id="day0">
+                    <div class="card">
+                      <div class="card-body sx-5-day-card">
+                        <h3 class="date-forecast">Date</h3>
+                        <p><img class="icon-forecast"></p>
+                        <p class="description-forecast"></p>
+                        <p>Temp: <span class="temp-forecast"></span> &#8457</p>
+                        <p>Humidity: <span class="humidity-forecast"></span>%</p>
+                        <p>Wind: <span class="wind-forecast"></span> MPH</p>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm sx-col" id="day1">
+                    <div class="card">
+                      <div class="card-body sx-5-day-card">
+                        <h3 class="date-forecast">Date</h3>
+                        <p><img class="icon-forecast"></p>
+                        <p class="description-forecast"></p>
+                        <p>Temp: <span class="temp-forecast"></span> &#8457</p>
+                        <p>Humidity: <span class="humidity-forecast"></span>%</p>
+                        <p>Wind: <span class="wind-forecast"></span> MPH</p>
+
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm sx-col" id="day2">
+                    <div class="card">
+                      <div class="card-body sx-5-day-card">
+                        <h3 class="date-forecast">Date</h3>
+                        <p><img class="icon-forecast"></p>
+                        <p class="description-forecast"></p>
+                        <p>Temp: <span class="temp-forecast"></span> &#8457</p>
+                        <p>Humidity: <span class="humidity-forecast"></span>%</p>
+                        <p>Wind: <span class="wind-forecast"></span> MPH</p>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm sx-col" id="day3">
+                    <div class="card">
+                        <div class="card-body sx-5-day-card">
+                          <h3 class="date-forecast">Date</h3>
+                          <p><img class="icon-forecast"></p>
+                          <p class="description-forecast"></p>
+                          <p>Temp: <span class="temp-forecast"></span> &#8457</p>
+                          <p>Humidity: <span class="humidity-forecast"></span>%</p>
+                          <p>Wind: <span class="wind-forecast"></span> MPH</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm sx-col" id="day4">
+                    <div class="card">
+                      <div class="card-body sx-5-day-card">
+                        <h3 class="date-forecast">Date</h3>
+                        <p><img class="icon-forecast"></p>
+                        <p class="description-forecast"></p>
+                        <p>Temp: <span class="temp-forecast"></span> &#8457</p>
+                        <p>Humidity: <span class="humidity-forecast"></span>%</p>
+                        <p>Wind: <span class="wind-forecast"></span> MPH</p>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+      //🍎 global variables
+      var today = new Date();
+      var weatherConditionCodes = [{id: 200, main: "Thunderstorm", description: "thunderstorm with light rain", icon: "11"},{id: 201, main: "Thunderstorm", description: "thunderstorm with rain", icon: "11"},{id: 202, main: "Thunderstorm", description: "thunderstorm with heavy rain", icon: "11"},{id: 210, main: "Thunderstorm", description: "light thunderstorm", icon: "11"},{id: 211, main: "Thunderstorm", description: "thunderstorm", icon: "11"},{id: 212, main: "Thunderstorm", description: "heavy thunderstorm", icon: "11"},{id: 221, main: "Thunderstorm", description: "ragged thunderstorm", icon: "11"},{id: 230, main: "Thunderstorm", description: "thunderstorm with light drizzle", icon: "11"},{id: 231, main: "Thunderstorm", description: "thunderstorm with drizzle", icon: "11"},{id: 232, main: "Thunderstorm", description: "thunderstorm with heavy drizzle", icon: "11"},{id: 300, main: "Drizzle", description: "light intensity drizzle", icon: "09"},{id: 301, main: "Drizzle", description: "drizzle", icon: "09"},{id: 302, main: "Drizzle", description: "heavy intensity drizzle", icon: "09"},{id: 310, main: "Drizzle", description: "light intensity drizzle rain", icon: "09"},{id: 311, main: "Drizzle", description: "drizzle rain", icon: "09"},{id: 312, main: "Drizzle", description: "heavy intensity drizzle rain", icon: "09"},{id: 313, main: "Drizzle", description: "shower rain and drizzle", icon: "09"},{id: 314, main: "Drizzle", description: "heavy shower rain and drizzle", icon: "09"},{id: 321, main: "Drizzle", description: "shower drizzle", icon: "09"},{id: 500, main: "Rain", description: "light rain", icon: "10"},{id: 501, main: "Rain", description: "moderate rain", icon: "10"},{id: 502, main: "Rain", description: "heavy intensity rain", icon: "10"},{id: 503, main: "Rain", description: "very heavy rain", icon: "10"},{id: 504, main: "Rain", description: "extreme rain", icon: "10"},{id: 511, main: "Rain", description: "freezing rain", icon: "13"},{id: 520, main: "Rain", description: "light intensity shower rain", icon: "09"},{id: 521, main: "Rain", description: "shower rain", icon: "09"},{id: 522, main: "Rain", description: "heavy intensity shower rain", icon: "09"},{id: 531, main: "Rain", description: "ragged shower rain", icon: "09"},{id: 600, main: "Snow", description: "light snow", icon: "13"},{id: 601, main: "Snow", description: "Snow", icon: "13"},{id: 602, main: "Snow", description: "Heavy snow", icon: "13"},{id: 611, main: "Snow", description: "Sleet", icon: "13"},{id: 612, main: "Snow", description: "Light shower sleet", icon: "13"},{id: 613, main: "Snow", description: "Shower sleet", icon: "13"},{id: 615, main: "Snow", description: "Light rain and snow", icon: "13"},{id: 616, main: "Snow", description: "Rain and snow", icon: "13"},{id: 620, main: "Snow", description: "Light shower snow", icon: "13"},{id: 621, main: "Snow", description: "Shower snow", icon: "13"},{id: 622, main: "Snow", description: "Heavy shower snow", icon: "13"},{id: 701, main: "Mist", description: "mist", icon: "50"},{id: 711, main: "Smoke", description: "Smoke", icon: "50"},{id: 721, main: "Haze", description: "Haze", icon: "50"},{id: 731, main: "Dust", description: "sand/ dust whirls", icon: "50"},{id: 741, main: "Fog", description: "fog", icon: "50"},{id: 751, main: "Sand", description: "sand", icon: "50"},{id: 761, main: "Dust", description: "dust", icon: "50"},{id: 762, main: "Ash", description: "volcanic ash", icon: "50"},{id: 771, main: "Squall", description: "squalls", icon: "50"},{id: 781, main: "Tornado", description: "tornado", icon: "50"},{id: 800, main: "Clear", description: "clear sky", icon: "01"},{id: 801, main: "Clouds", description: "few clouds: 11-25%", icon: "02"},{id: 802, main: "Clouds", description: "scattered clouds: 25-50%", icon: "03"},{id: 803, main: "Clouds", description: "broken clouds: 51-84%", icon: "04"},{id: 804, main: "Clouds", description: "overcast clouds: 85-100%", icon: "04"}]
+      var cityList = [{name: 'New York', state: ' New York'}, {name: 'Los Angeles', state: ' California'}, {name: 'Chicago', state: ' Illinois'}, {name: 'Houston', state: ' Texas'}, {name: 'Phoenix', state: ' Arizona'}, {name: 'Philadelphia', state: ' Pennsylvania'}, {name: 'San Antonio', state: ' Texas'}, {name: 'San Diego', state: ' California'}, {name: 'Dallas', state: ' Texas'}, {name: 'San Jose', state: ' California'}, {name: 'Austin', state: ' Texas'}, {name: 'Jacksonville', state: ' Florida'}, {name: 'San Francisco', state: ' California'}, {name: 'Columbus', state: ' Ohio'}, {name: 'Fort Worth', state: ' Texas'}, {name: 'Indianapolis', state: ' Indiana'}, {name: 'Charlotte', state: ' North Carolina'}, {name: 'Seattle', state: ' Washington'}, {name: 'Denver', state: ' Colorado'}, {name: 'Washington, D.C.', state: 'none'}, {name: 'Boston', state: ' Massachusetts'}, {name: 'El Paso', state: ' Texas'}, {name: 'Detroit', state: ' Michigan'}, {name: 'Nashville', state: ' Tennessee'}, {name: 'Memphis', state: ' Tennessee'}, {name: 'Portland', state: ' Oregon'}, {name: 'Oklahoma City', state: ' Oklahoma'}, {name: 'Las Vegas', state: ' Nevada'}, {name: 'Louisville', state: ' Kentucky'}, {name: 'Baltimore', state: ' Maryland'}, {name: 'Milwaukee', state: ' Wisconsin'}, {name: 'Albuquerque', state: ' New Mexico'}, {name: 'Tucson', state: ' Arizona'}, {name: 'Fresno', state: ' California'}, {name: 'Sacramento', state: ' California'}, {name: 'Mesa', state: ' Arizona'}, {name: 'Kansas City', state: ' Missouri'}, {name: 'Atlanta', state: ' Georgia'}, {name: 'Long Beach', state: ' California'}, {name: 'Omaha', state: ' Nebraska'}, {name: 'Raleigh', state: ' North Carolina'}, {name: 'Colorado Springs', state: ' Colorado'}, {name: 'Miami', state: ' Florida'}, {name: 'Virginia Beach', state: ' Virginia'}, {name: 'Oakland', state: ' California'}, {name: 'Minneapolis', state: ' Minnesota'}, {name: 'Tulsa', state: ' Oklahoma'}, {name: 'Arlington', state: ' Texas'}, {name: 'New Orleans', state: ' Louisiana'}, {name: 'Wichita', state: ' Kansas'}, {name: 'Cleveland', state: ' Ohio'}, {name: 'Tampa', state: ' Florida'}, {name: 'Bakersfield', state: ' California'}, {name: 'Aurora', state: ' Colorado'}, {name: 'Anaheim', state: ' California'}, {name: 'Honolulu', state: ' Hawaii'}, {name: 'Santa Ana', state: ' California'}, {name: 'Riverside', state: ' California'}, {name: 'Corpus Christi', state: ' Texas'}, {name: 'Lexington', state: ' Kentucky'}, {name: 'Stockton', state: ' California'}, {name: 'St. Louis', state: ' Missouri'}, {name: 'Saint Paul', state: ' Minnesota'}, {name: 'Henderson', state: ' Nevada'}, {name: 'Pittsburgh', state: ' Pennsylvania'}, {name: 'Cincinnati', state: ' Ohio'}, {name: 'Anchorage', state: ' Alaska'}, {name: 'Greensboro', state: ' North Carolina'}, {name: 'Plano', state: ' Texas'}, {name: 'Newark', state: ' New Jersey'}, {name: 'Lincoln', state: ' Nebraska'}, {name: 'Orlando', state: ' Florida'}, {name: 'Irvine', state: ' California'}, {name: 'Toledo', state: ' Ohio'}, {name: 'Jersey City', state: ' New Jersey'}, {name: 'Chula Vista', state: ' California'}, {name: 'Durham', state: ' North Carolina'}, {name: 'Fort Wayne', state: ' Indiana'}, {name: 'St. Petersburg', state: ' Florida'}, {name: 'Laredo', state: ' Texas'}, {name: 'Buffalo', state: ' New York'}, {name: 'Madison', state: ' Wisconsin'}, {name: 'Lubbock', state: ' Texas'}, {name: 'Chandler', state: ' Arizona'}, {name: 'Scottsdale', state: ' Arizona'}, {name: 'Reno', state: ' Nevada'}, {name: 'Glendale', state: ' Arizona'}, {name: 'Norfolk', state: ' Virginia'}, {name: 'Winston–Salem', state: ' North Carolina'}, {name: 'North Las Vegas', state: ' Nevada'}, {name: 'Gilbert', state: ' Arizona'}, {name: 'Chesapeake', state: ' Virginia'}, {name: 'Irving', state: ' Texas'}, {name: 'Hialeah', state: ' Florida'}, {name: 'Garland', state: ' Texas'}, {name: 'Fremont', state: ' California'}, {name: 'Richmond', state: ' Virginia'}, {name: 'Boise', state: ' Idaho'}, {name: 'Baton Rouge', state: ' Louisiana'}, {name: 'Des Moines', state: ' Iowa'}, {name: 'Spokane', state: ' Washington'}, {name: 'San Bernardino', state: ' California'}, {name: 'Modesto', state: ' California'}, {name: 'Tacoma', state: ' Washington'}, {name: 'Fontana', state: ' California'}, {name: 'Santa Clarita', state: ' California'}, {name: 'Birmingham', state: ' Alabama'}, {name: 'Oxnard', state: ' California'}, {name: 'Fayetteville', state: ' North Carolina'}, {name: 'Rochester', state: ' New York'}, {name: 'Moreno Valley', state: ' California'}, {name: 'Glendale', state: ' California'}, {name: 'Yonkers', state: ' New York'}, {name: 'Huntington Beach', state: ' California'}, {name: 'Aurora', state: ' Illinois'}, {name: 'Salt Lake City', state: ' Utah'}, {name: 'Amarillo', state: ' Texas'}, {name: 'Montgomery', state: ' Alabama'}, {name: 'Grand Rapids', state: ' Michigan'}, {name: 'Little Rock', state: ' Arkansas'}, {name: 'Akron', state: ' Ohio'}, {name: 'Augusta', state: ' Georgia'}, {name: 'Huntsville', state: ' Alabama'}, {name: 'Columbus', state: ' Georgia'}, {name: 'Grand Prairie', state: ' Texas'}, {name: 'Shreveport', state: ' Louisiana'}, {name: 'Overland Park', state: ' Kansas'}, {name: 'Tallahassee', state: ' Florida'}, {name: 'Mobile', state: ' Alabama'}, {name: 'Port St. Lucie', state: ' Florida'}, {name: 'Knoxville', state: ' Tennessee'}, {name: 'Worcester', state: ' Massachusetts'}, {name: 'Tempe', state: ' Arizona'}, {name: 'Cape Coral', state: ' Florida'}, {name: 'Brownsville', state: ' Texas'}, {name: 'McKinney', state: ' Texas'}, {name: 'Providence', state: ' Rhode Island'}, {name: 'Fort Lauderdale', state: ' Florida'}, {name: 'Newport News', state: ' Virginia'}, {name: 'Chattanooga', state: ' Tennessee'}, {name: 'Rancho Cucamonga', state: ' California'}, {name: 'Frisco', state: ' Texas'}, {name: 'Sioux Falls', state: ' South Dakota'}, {name: 'Oceanside', state: ' California'}, {name: 'Ontario', state: ' California'}, {name: 'Vancouver', state: ' Washington'}, {name: 'Santa Rosa', state: ' California'}, {name: 'Garden Grove', state: ' California'}, {name: 'Elk Grove', state: ' California'}, {name: 'Pembroke Pines', state: ' Florida'}, {name: 'Salem', state: ' Oregon'}, {name: 'Eugene', state: ' Oregon'}, {name: 'Peoria', state: ' Arizona'}, {name: 'Corona', state: ' California'}, {name: 'Springfield', state: ' Missouri'}, {name: 'Jackson', state: ' Mississippi'}, {name: 'Cary', state: ' North Carolina'}, {name: 'Fort Collins', state: ' Colorado'}, {name: 'Hayward', state: ' California'}, {name: 'Lancaster', state: ' California'}, {name: 'Alexandria', state: ' Virginia'}, {name: 'Salinas', state: ' California'}, {name: 'Palmdale', state: ' California'}, {name: 'Lakewood', state: ' Colorado'}, {name: 'Springfield', state: ' Massachusetts'}, {name: 'Sunnyvale', state: ' California'}, {name: 'Hollywood', state: ' Florida'}, {name: 'Pasadena', state: ' Texas'}, {name: 'Clarksville', state: ' Tennessee'}, {name: 'Pomona', state: ' California'}, {name: 'Kansas City', state: ' Kansas'}, {name: 'Macon', state: ' Georgia'}, {name: 'Escondido', state: ' California'}, {name: 'Paterson', state: ' New Jersey'}, {name: 'Joliet', state: ' Illinois'}, {name: 'Naperville', state: ' Illinois'}, {name: 'Rockford', state: ' Illinois'}, {name: 'Torrance', state: ' California'}, {name: 'Bridgeport', state: ' Connecticut'}, {name: 'Savannah', state: ' Georgia'}, {name: 'Killeen', state: ' Texas'}, {name: 'Bellevue', state: ' Washington'}, {name: 'Mesquite', state: ' Texas'}, {name: 'Syracuse', state: ' New York'}, {name: 'McAllen', state: ' Texas'}, {name: 'Pasadena', state: ' California'}, {name: 'Orange', state: ' California'}, {name: 'Fullerton', state: ' California'}, {name: 'Dayton', state: ' Ohio'}, {name: 'Miramar', state: ' Florida'}, {name: 'Olathe', state: ' Kansas'}, {name: 'Thornton', state: ' Colorado'}, {name: 'Waco', state: ' Texas'}, {name: 'Murfreesboro', state: ' Tennessee'}, {name: 'Denton', state: ' Texas'}, {name: 'West Valley City', state: ' Utah'}, {name: 'Midland', state: ' Texas'}, {name: 'Carrollton', state: ' Texas'}, {name: 'Roseville', state: ' California'}, {name: 'Warren', state: ' Michigan'}, {name: 'Charleston', state: ' South Carolina'}, {name: 'Hampton', state: ' Virginia'}, {name: 'Surprise', state: ' Arizona'}, {name: 'Columbia', state: ' South Carolina'}, {name: 'Coral Springs', state: ' Florida'}, {name: 'Visalia', state: ' California'}, {name: 'Sterling Heights', state: ' Michigan'}, {name: 'Gainesville', state: ' Florida'}, {name: 'Cedar Rapids', state: ' Iowa'}, {name: 'New Haven', state: ' Connecticut'}, {name: 'Stamford', state: ' Connecticut'}, {name: 'Elizabeth', state: ' New Jersey'}, {name: 'Concord', state: ' California'}, {name: 'Thousand Oaks', state: ' California'}, {name: 'Kent', state: ' Washington'}, {name: 'Santa Clara', state: ' California'}, {name: 'Simi Valley', state: ' California'}, {name: 'Lafayette', state: ' Louisiana'}, {name: 'Topeka', state: ' Kansas'}, {name: 'Athens', state: ' Georgia'}, {name: 'Round Rock', state: ' Texas'}, {name: 'Hartford', state: ' Connecticut'}, {name: 'Norman', state: ' Oklahoma'}, {name: 'Victorville', state: ' California'}, {name: 'Fargo', state: ' North Dakota'}, {name: 'Berkeley', state: ' California'}, {name: 'Vallejo', state: ' California'}, {name: 'Abilene', state: ' Texas'}, {name: 'Columbia', state: ' Missouri'}, {name: 'Ann Arbor', state: ' Michigan'}, {name: 'Allentown', state: ' Pennsylvania'}, {name: 'Pearland', state: ' Texas'}, {name: 'Beaumont', state: ' Texas'}, {name: 'Wilmington', state: ' North Carolina'}, {name: 'Evansville', state: ' Indiana'}, {name: 'Arvada', state: ' Colorado'}, {name: 'Provo', state: ' Utah'}, {name: 'Independence', state: ' Missouri'}, {name: 'Lansing', state: ' Michigan'}, {name: 'Odessa', state: ' Texas'}, {name: 'Richardson', state: ' Texas'}, {name: 'Fairfield', state: ' California'}, {name: 'El Monte', state: ' California'}, {name: 'Rochester', state: ' Minnesota'}, {name: 'Clearwater', state: ' Florida'}, {name: 'Carlsbad', state: ' California'}, {name: 'Springfield', state: ' Illinois'}, {name: 'Temecula', state: ' California'}, {name: 'West Jordan', state: ' Utah'}, {name: 'Costa Mesa', state: ' California'}, {name: 'Miami Gardens', state: ' Florida'}, {name: 'Cambridge', state: ' Massachusetts'}, {name: 'College Station', state: ' Texas'}, {name: 'Murrieta', state: ' California'}, {name: 'Downey', state: ' California'}, {name: 'Peoria', state: ' Illinois'}, {name: 'Westminster', state: ' Colorado'}, {name: 'Elgin', state: ' Illinois'}, {name: 'Antioch', state: ' California'}, {name: 'Palm Bay', state: ' Florida'}, {name: 'High Point', state: ' North Carolina'}, {name: 'Lowell', state: ' Massachusetts'}, {name: 'Manchester', state: ' New Hampshire'}, {name: 'Pueblo', state: ' Colorado'}, {name: 'Gresham', state: ' Oregon'}, {name: 'North Charleston', state: ' South Carolina'}, {name: 'Ventura', state: ' California'}, {name: 'Inglewood', state: ' California'}, {name: 'Pompano Beach', state: ' Florida'}, {name: 'Centennial', state: ' Colorado'}, {name: 'West Palm Beach', state: ' Florida'}, {name: 'Everett', state: ' Washington'}, {name: 'Richmond', state: ' California'}, {name: 'Clovis', state: ' California'}, {name: 'Billings', state: ' Montana'}, {name: 'Waterbury', state: ' Connecticut'}, {name: 'Broken Arrow', state: ' Oklahoma'}, {name: 'Lakeland', state: ' Florida'}, {name: 'West Covina', state: ' California'}, {name: 'Boulder', state: ' Colorado'}, {name: 'Daly City', state: ' California'}, {name: 'Santa Maria', state: ' California'}, {name: 'Hillsboro', state: ' Oregon'}, {name: 'Sandy Springs', state: ' Georgia'}, {name: 'Norwalk', state: ' California'}, {name: 'Jurupa Valley', state: ' California'}, {name: 'Lewisville', state: ' Texas'}, {name: 'Greeley', state: ' Colorado'}, {name: 'Davie', state: ' Florida'}, {name: 'Green Bay', state: ' Wisconsin'}, {name: 'Tyler', state: ' Texas'}, {name: 'League City', state: ' Texas'}, {name: 'Burbank', state: ' California'}, {name: 'San Mateo', state: ' California'}, {name: 'Wichita Falls', state: ' Texas'}, {name: 'El Cajon', state: ' California'}, {name: 'Rialto', state: ' California'}, {name: 'Lakewood', state: ' New Jersey'}, {name: 'Edison', state: ' New Jersey'}, {name: 'Davenport', state: ' Iowa'}, {name: 'South Bend', state: ' Indiana'}, {name: 'Woodbridge', state: ' New Jersey'}, {name: 'Las Cruces', state: ' New Mexico'}, {name: 'Vista', state: ' California'}, {name: 'Renton', state: ' Washington'}, {name: 'Sparks', state: ' Nevada'}, {name: 'Clinton', state: ' Michigan'}, {name: 'Allen', state: ' Texas'}, {name: 'Tuscaloosa', state: ' Alabama'}, {name: 'San Angelo', state: ' Texas'}, {name: 'Vacaville', state: ' California'}];
+      var myKey = "71c0ee10f1069decf1135c6c5422aa33";
+      var listOfSearch = [];
+
+      //🍎 functions
+      //create a function to filter the list according to user input.
+      function filterList(input) {
+        var filter = input.toUpperCase();
+        var filterResult = [];
+        var itemObj;
+        var n = cityList.length
+        for(var i=0; i<n; i++) {
+          itemObj = cityList[i]
+          if(itemObj.name.toUpperCase().indexOf(filter) > -1) {
+            filterResult.push(itemObj);
+          };
+        };
+        return(filterResult);
+      };
+      // make a function to transfer wind speed from meter per second to miles per hour
+      function toMPH(speed) {
+        return (speed*60*60/1609.34).toFixed(1);
+      };
+
+      //make a function to transfer temperature from kelvin to Fahrenheit
+      function KtoF(temp) {
+        return ((temp-273.15)*9/5 +32).toFixed(1);
+      };
+
+      //make a function to set the weather icon
+      function weatherIcon(id, sunrise, sunset){
+        var n=weatherConditionCodes.length;
+        var iconId;
+        var description;
+        for(var i=0; i<n; i++) {
+          if (weatherConditionCodes[i].id === id) {
+            iconId = weatherConditionCodes[i].icon;
+            description = weatherConditionCodes[i].description;
+          }
+        }
+        
+        var currentTime = today.getTime()/1000;
+        var url;
+        if (currentTime > sunrise && currentTime < sunset) {
+          url = "http://openweathermap.org/img/wn/" + "04" + "d" + "@2x.png";
+        } else {
+          url = "http://openweathermap.org/img/wn/" + "04" + "n" + "@2x.png";
+        };
+        $("#icon").attr("src", url);
+        $("#description").text(description);
+      }
+
+      //make a function to get UV index
+      function getUVIndex(lat, lon) {
+        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" 
+                      + myKey + "&lat=" + lat + "&lon=" + lon;
+        $.ajax({
+          url: uvURL,
+          method: "GET"
+        }).then(function(response) {
+          var UVIndex = response.value
+          $("#uv").text(UVIndex);
+          setUVColor(UVIndex);
+        });
+      }
+
+      //make a function to set uv color
+      function setUVColor(index) {
+        if (index < 3) {
+          $("#uv").css({"background-color": "green", "color": "white", "padding": "5px"});
+        } else if (index < 6) {
+          $("#uv").css({"background-color": "yellow", "color": "black", "padding": "5px"});
+        } else if (index < 8) {
+          $("#uv").css({"background-color": "orange", "color": "white", "padding": "5px"});
+        } else if (index < 11) {
+          $("#uv").css({"background-color": "red", "color": "white", "padding": "5px"});
+        } else {
+          $("#uv").css({"background-color": "purple", "color": "white", "padding": "5px"});
+        };
+      };
+
+      //make a function to set current weather
+      function currentWeather(city, state) {
+        $("#city-name").text(city + " " + state);
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="
+                        + city +"," +state
+                        + "&appid=" + myKey;
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+          var temp = response.main.temp;
+          $("#temperature").text(KtoF(temp));
+          var humidity = response.main.humidity;
+          $("#humidity").text(humidity);
+          var windSpeed = response.wind.speed;
+          $("#wind").text(toMPH(windSpeed));
+          var weatherId = response.weather[0].id;
+          var sunriseTime = response.sys.sunrise;
+          var sunsetTime = response.sys.sunset;
+          weatherIcon(weatherId, sunriseTime, sunsetTime);
+          var latitude = response.coord.lat;
+          var longitude = response.coord.lon;
+          getUVIndex(latitude, longitude); 
+        });
+      }
+      // End of current weather
+
+      //make a function to set up 5 day forecast
+      function fiveDayForecast(city, state) {
+        var query5DayURL = "https://api.openweathermap.org/data/2.5/forecast?q="
+                            + city +"," + state
+                            + "&appid=" + myKey;
+        $.ajax({
+          url: query5DayURL,
+          method: "GET"
+        }).then(function(response) {
+          //set up five day forecast cards
+          for(var i=0; i<5; i++) {
+            var IdName = "#day" + i;
+            var t = 8*i-1*Boolean(i);
+            var date = response.list[t].dt_txt;
+
+            var temperature = KtoF(response.list[t].main.temp);
+            var humidity = response.list[t].main.humidity;
+            var iconID = response.list[t].weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/wn/" + iconID + "@2x.png";
+            var description = response.list[t].weather[0].description;
+            var wind = toMPH(response.list[t].wind.speed);
+            
+            $(IdName).find(".date-forecast").text(date.slice(0,10));
+
+            $(IdName).find(".icon-forecast").attr("src",iconURL);
+            $(IdName).find(".description-forecast").text(description);
+            $(IdName).find(".temp-forecast").text(temperature);
+            $(IdName).find(".humidity-forecast").text(humidity);
+            $(IdName).find(".wind-forecast").text(wind);
+          };
+        });
+      };
+
+      //create a function to set up the history search list.
+      function saveSearch(city, state) {
+        var item = {cityName: city, stateName:state};
+        listOfSearch.unshift(item);
+        localStorage.setItem("weatherDashboard", JSON.stringify(listOfSearch));
+        var record = $("<p>").text(city + ", " + state);
+        record.attr("class","search-history");
+        $("#history-list").prepend(record);
+
+      };
+
+      //create a function to initialize the page
+      function initial() {
+        var searchList = JSON.parse(localStorage.getItem("weatherDashboard"));
+        var city, state;
+        var n = searchList.length;
+        for(var i=0; i<n; i++) {
+          city = searchList[i].cityName;
+          state = searchList[i].stateName;
+          var record = $("<p>").text(city + ", " + state);
+          record.attr("class","search-history");
+          $("#history-list").prepend(record);
+        };
+        city = searchList[0].cityName;
+        state = searchList[0].stateName;
+        currentWeather(city, state);
+        fiveDayForecast(city, state);
+      };
+
+      //🍏 main program start
+      //initialize the page
+      initial();
+
+      //search cities 
+      $("#search-box").on("input", function() {
+        var input = $(this).val();
+        var list = filterList(input);
+        $("#search-result").css("display","block");
+        for(i=0; i<5; i++) {
+          var elName = "#item" + i;
+          if(i < list.length) {
+            var city = list[i].name;
+            var state = list[i].state;
+            $(elName).text(city + ", " + state );
+          } else {
+            $(elName).text("");
+          }
+          if(input === "") {
+            $(elName).text("");
+            $("#search-result").css("display","none");
+          }
+        };
+      });
+
+      //select city
+      $(".filter-list").on("click", function() {
+        var choice = $(this).text();
+        $("#search-box").val(choice);
+        $("#search-result").css("display","none");
+      });
+
+
+      //trigger forecast by clicking search icon
+      $("#search-btn").on("click", function(){
+        event.preventDefault();
+        var inputStr = $("#search-box").val()
+        var inputArr = inputStr.split(", ");
+        var city = inputArr[0];
+        var state = inputArr[1].trim();
+      
+        currentWeather(city, state);
+        fiveDayForecast(city, state);
+        saveSearch(city, state);
+      });
+
+      //click on a city in the search history
+      $(".search-history").on("click", function() {
+        var str = $(this).text()
+        var arr = str.split(", ");
+        var city = arr[0];
+        var state = arr[1].trim();
+        currentWeather(city, state);
+        fiveDayForecast(city, state);
+      });
+
+      //set up the forecast section
+      var date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
+      $("#date").text("("+ date + ")");
+      
+
+    </script>
+  </body>
+</html>
